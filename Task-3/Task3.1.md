@@ -8,22 +8,28 @@ Observe real-time database behavior using PostgreSQL system views.
 ### Check Active Connections
 SELECT * FROM pg_stat_activity;
 
-### Identify Long Running Queries
-SELECT pid, usename, now() - query_start AS duration, state, query
-FROM pg_stat_activity
-WHERE state != 'idle'
-ORDER BY duration DESC;
+### OPEN TERMINAL
+open Ubuntu terminal
 
-### Monitor Locks
-SELECT * FROM pg_locks;
+### INSTALL REQUIRED PACKAGES
+sudo apt update
+sudo apt upgrade
+sudo apt install python3-pip -y
+pip3 install flask psycopg2-binary
 
-### Check Database Size
-SELECT datname, pg_size_pretty(pg_database_size(datname))
-FROM pg_database;
+### CREATE PROJECT FOLDER
+mkdir flask_dashboard
+cd flask_dashboard
 
-### Check Table Size
-SELECT relname, pg_size_pretty(pg_total_relation_size(relid))
-FROM pg_stat_user_tables;
+### CREATE FILES
+touch app.py
+mkdir templates
+touch index.html
+
+### WRITE BACKEND CODE
+Step 1: Open file
+nano app.py
+
 
 ## Explanation
-These system views help monitor database activity, running queries, locks, and storage usage.
+
